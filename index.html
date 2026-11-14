@@ -1,11 +1,22 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Binary Practice</title>
 	</head>
 	<body>
+		<script>
+			function check(number) {
+				const box = document.getElementById('answerEntry1');
+				box.style.backgroundColor = 'black';
+				box.style.color = 'white';
+				window.alert(number);
+			}
+		</script>
 		<h1>Binary Practice</h1>
 		<h4>Question 1</h4>
 		<p>Convert [number] from [base] to [base]</p>
+		<input type="text" class="answerEntry" id="answerEntry1">
+		<button onclick="check(7)">Check</button>
                 <h4>Question 2</h4>
                 <p>Convert [number] from [base] to [base]</p>
                 <h4>Question 3</h4>
