@@ -1,4 +1,4 @@
-class BaseConversions {
+export class BaseConversions {
     static binaryToDenary(binary, twosComplement) {
         let denary = 0;
         const weights = [];
@@ -159,7 +159,7 @@ class BaseConversions {
     }
 }
 
-class FixedPoint {
+export class FixedPoint {
     static toDenary(binary, pointPosition) {
         const weights = [];
         weights[0] = -1 * (2 ** (pointPosition - 1));
@@ -198,7 +198,7 @@ class FixedPoint {
     }
 }
 
-class FloatingPoint {
+export class FloatingPoint {
     static toBinary(number, mantissaSize, exponentSize) {
         let exponent = 0;
         if (number > 0) {
@@ -302,5 +302,3 @@ class FloatingPoint {
         return total;
     }
 }
-
-console.log(FloatingPoint.toDenary("10110011", 4, 4));
