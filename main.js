@@ -22,7 +22,7 @@ class Question {
 	}
 
 	getAnswer() {
-		return this.Answer;
+		return this.answer;
 	}
 
 	getExtra(index) {
@@ -111,7 +111,7 @@ function separate(questionType) {
                         end = "denary";
                         break;
                 case "denarytofloatingpoint":
-                        start = "binary";
+                        start = "denary";
                         end = "floatingpoint";
                         break;
 	}
@@ -310,13 +310,16 @@ function setup() {
 			case "binary":
 				switch (start) {
 					case "denary":
-						answer = BaseConversions.denaryToBinary(startNum, false);
+						answer = BaseConversions.denaryToBinary(startNum, false, 8);
 						break;
 					case "hex":
 						answer = BaseConversions.hexToBinary(startNum);
 						break;
 					case "octal":
 						answer = BaseConversions.octalToBinary(startNum);
+						if (answer.substring(0, 4) == "0000") {
+							answer = answer.substring(4);
+						}
 						break;
 				}
 				break;
@@ -350,13 +353,13 @@ function setup() {
 				answer = BaseConversions.denaryToSignMag(startNum);
 				break;
 			case "twoscomp":
-				answer = BaseConversions.denaryToBinary(startNum, true);
+				answer = BaseConversions.denaryToBinary(startNum, true, 8);
 				break;
 			case "fixedpoint":
-				answer = FixedPoint.toBinary(startNum, extra[1], extra[0] - extra[1]);
+				answer = FixedPoint.toBinary(startNum, extra[0], extra[1]);
 				break;
 			case "floatingpoint":
-				answer = FloatingPoint.toBinary(startNum, extra[1], extra[0] - extra[1]);
+				answer = FloatingPoint.toBinary(startNum, extra[0], extra[1]);
 				break;
 			case "denary":
 				switch (start) {
@@ -376,16 +379,29 @@ function setup() {
 						answer = BaseConversions.binaryToDenary(startNum, true);
 						break;
 					case "fixedpoint":
-						answer = FixedPoint.toDenary(startNum, extra[1]);
+						answer = FixedPoint.toDenary(startNum, extra[0]);
 						break;
 					case "floatingpoint":
-						answer = FloatingPoint.toDenary(startNum, extra[1], extra[0] - extra[1]);
+						answer = FloatingPoint.toDenary(startNum, extra[0], extra[1]);
 						break;
 				}
 				break;
 		}
-		questionObjects[i] = new Question(start, end, startNum, answer);
+		questionObjects[i] = new Question(start, end, startNum, answer, extra);
+		i += 1;
 	}
+	console.log(questionObjects[0].getStartBase());
+	console.log(questionObjects[0].getEndBase());
+	console.log(questionObjects[0].getStartNumber());
+	console.log(questionObjects[0].getAnswer());
+	console.log(questionObjects[0].getExtra(0));
+	console.log(questionObjects[0].getExtra(1));
+	console.log(questionObjects[1].getStartBase());
+        console.log(questionObjects[1].getEndBase());
+        console.log(questionObjects[1].getStartNumber());
+        console.log(questionObjects[1].getAnswer());
+        console.log(questionObjects[1].getExtra(0));
+        console.log(questionObjects[1].getExtra(1));
 	return questionObjects;
 }
 
@@ -395,7 +411,7 @@ function genBinary(length) {
 		if (Math.random() > 0.5) {
 			binary += "" + "1";
 		} else {
-			binary == "" + "0";
+			binary += "" + "0";
 		}
 	}
 	return binary;
@@ -405,6 +421,9 @@ function genHex(length) {
 	let hex = "";
 	for (let i = 0; i < length; i++) {
 		hex += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 16));
+	}
+	while (hex[0] == "0") {
+		hex[0] = BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 16));
 	}
 	return hex;
 }
@@ -425,7 +444,7 @@ function fractionalDenary(length1, length2, fixedComp) {
 		for (let i = 1; i < (length1 + length2); i++) {
 			weights[i] = weights[i - 1] / 2;
 		}
-		weights[0] *- -1;
+		weights[0] *= -1;
 		for (const weight of weights) {
 			if (Math.random() > 0.5) {
 				denary += weight;

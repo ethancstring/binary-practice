@@ -145,7 +145,6 @@ export class BaseConversions {
             largestWeight *= 8;
             length += 1;
         }
-        console.log(length);
         length *= 3;
         if (length % 4 != 0){
             length = (Math.trunc(length / 4) + 1) * 4;
