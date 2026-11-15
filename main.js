@@ -5,7 +5,7 @@ class Question {
 		this.startBase = startBase;
 		this.endBase = endBase;
 		this.startNumber = startNumber;
-		this.endNumber = endNumber;
+		this.answer = answer;
 		this.extra = extra;
 	}
 
@@ -21,8 +21,8 @@ class Question {
 		return this.startNumber;
 	}
 
-	getEndNumber() {
-		return this.endNumber;
+	getAnswer() {
+		return this.Answer;
 	}
 
 	getExtra(index) {
@@ -403,7 +403,7 @@ function genBinary(length) {
 
 function genHex(length) {
 	let hex = "";
-	for (int i = 0; i < length; i++) {
+	for (let i = 0; i < length; i++) {
 		hex += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 16));
 	}
 	return hex;
@@ -411,7 +411,7 @@ function genHex(length) {
 
 function genOctal(length) {
         let octal = "";
-        for (int i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
                 octal += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 8));
         }
         return octal;                             
