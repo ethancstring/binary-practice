@@ -528,7 +528,12 @@ function fractionalDenary(length1, length2, fixedComp) {
 	}
 }
 
+function draw(questionObjects) {
+	console.log(questionObjects);
+}
+
 document.getElementById('btn1').addEventListener('click', () => check(1));
 
 
-setup();
+let questionObjectsArray = setup();
+draw(questionObjectsArray);
