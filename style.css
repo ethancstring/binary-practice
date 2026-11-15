@@ -5,3 +5,36 @@
 	border: 1px solid black;
 	font-size: 15px;
 }
+
+.optionHolder {
+	display: grid;
+	grid-template-columns: 160px 40px;
+	padding: 2px;
+	margin: 0;
+	width: 200px;
+	height: 50px;
+	border: 1px solid black;
+	background-color: gray;
+	align-items: center;
+}
+
+#options {
+	display: grid;
+	grid-template-columns: 200px 200px;
+	grid-template-rows: auto auto auto auto auto auto auto auto auto;
+	padding: 0;
+	margin: 0;
+	width: 400px;
+	height: 450px;
+}
+	
+
+#denarytobinary {
+	width: 10px;
+	height: 10px
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
