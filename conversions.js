@@ -213,11 +213,11 @@ export class FloatingPoint {
         } else {
             number *= -1;
             if (number > 1) {
-                while (number / (2 ** exponent) >= 1) {
+                while (number / (2 ** exponent) > 1) {
                     exponent += 1;
                 }
             } else {
-                while (number / (2 ** (exponent + 1)) < 0.5) {
+                while (number / (2 ** (exponent)) <= 0.5) {
                     exponent -= 1;
                 }
             }

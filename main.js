@@ -285,8 +285,18 @@ function setup() {
 					extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
 					startNum = fractionalDenary(extra[0], extra[1], true);
 				} else {
-					extra[0] = Math.floor(Math.random() * 5) + 8;
-                                        extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
+					if (Math.random() > 0.67) {
+                                	        extra[0] = 6;
+                                	        extra[1] = 4;
+                                	} else {
+						if (Math.random() > 0.5) {
+                                	        	extra[0] = 9;
+                                	        	extra[1] = 3;
+						} else {
+							extra[0] = 10;
+							extra[1] = 4;
+						}
+                                	}
 					startNum = fractionalDenary(extra[0], extra[1], false);
 				}
 				break;
@@ -296,14 +306,29 @@ function setup() {
 				startNum = genBinary(extra[0] + extra[1]);
 				break;
 			case "floatingpoint":
-				extra[0] = Math.floor(Math.random() * 5) + 8;
-                                extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
 				if (Math.random() > 0.5) {
-					startNumber = "01";
+					extra[0] = 6;
+					extra[1] = 4;
 				} else {
-					startNumber = "10";
+					if (Math.random() > 0.67) {
+                                                extra[0] = 9;
+                                                extra[1] = 3;
+                                        } else {
+                                                extra[0] = 10;
+                                                extra[1] = 4;
+                                        }
 				}
-				startNumber += "" + genBinary(extra[0] + extra[1] - 2);
+				if (Math.random() > 0.5) {
+					startNum = "01";
+				} else {
+					startNum = "10";
+				}
+				startNum += "" + genBinary(extra[0] - 2);
+				let exponent = Math.floor(Math.random() * 6) - 2;
+				if ((BaseConversions.binaryToDenary(startNum, true) / (2 ** (extra[0] - 1)) * 8) % 1 != 0) {
+					exponent = 3;
+				}
+				startNum += BaseConversions.denaryToBinary(exponent, true, extra[1]);
 				break;
 		}
 		switch (end) {
@@ -453,17 +478,6 @@ function fractionalDenary(length1, length2, fixedComp) {
 		return denary;
 	} else {
 		let denary = 0;
-		const weights = [];
-                weights[0] = 1;
-                for (let i = 1; i < (length1); i++) {
-                        weights[i] = weights[i - 1] / 2;
-                }
-		weights[0] = -1;
-		for (const weight of weights) {
-                        if (Math.random() > 0.5) {
-                                denary += weight;
-                        }
-                }
 		const weightsExp = [];
 		weightsExp[0] = 2 ** (length2 - 1);
 		for (let i = 1; i < length2; i++) {
@@ -476,7 +490,32 @@ function fractionalDenary(length1, length2, fixedComp) {
                                 exponent += weight;
                         }
                 }
+		const weights = [];
+		weights[0] = 1;
+                for (let i = 1; i < (length1); i++) {
+                        weights[i] = weights[i - 1] / 2;
+                }
+                weights[0] = -1;
+                for (const weight of weights) {
+                        if (Math.random() > 0.5 && (weight >= 0.0625 || exponent >= 6)) {
+                                denary += weight;
+                        }
+                }
+		if (exponent < -5) {
+			exponent = Math.floor(Math.random() * 5) * -1;
+		}
 		denary *= 2 ** exponent;
+		while (denary < 50 && exponent < (2 ** (length2 - 1))) {
+			if (Math.random() > 0.7) {
+				exponent++;
+				denary *= 2;
+			} else {
+				break;
+			}
+		}
+		if ((denary * 32) % 1 != 0) {
+			denary = Math.floor(denary * 32) / 32;
+		}
 		return denary;
 	}
 }
