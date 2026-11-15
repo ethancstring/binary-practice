@@ -53,3 +53,7 @@ p {
 	height: 50px;
 	align-items: center;
 }
+
+#noQuestions {
+	margin: 2px;
+}
