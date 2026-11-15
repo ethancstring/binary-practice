@@ -17,6 +17,7 @@ function startQuiz() {
         const fixedpointtodenary = document.getElementById("fixedpointtodenary");
         const denarytofloatingpoint = document.getElementById("denarytofloatingpoint");
         const floatingpointtodenary = document.getElementById("floatingpointtodenary");
+	const noQuestions = document.getElementById("noQuestions");
 	let binarytodenaryVal = binarytodenary.checked;
 	let denarytobinaryVal = denarytobinary.checked;
 	let hextodenaryVal = hextodenary.checked;
@@ -35,6 +36,7 @@ function startQuiz() {
 	let fixedpointtodenaryVal = fixedpointtodenary.checked;
 	let denarytofloatingpointVal = denarytofloatingpoint.checked;
 	let floatingpointtodenaryVal = floatingpointtodenary.checked;
+	let noQuestionsVal = noQuestions.value;
 	let urlVars = "";
 	if (binarytodenaryVal){
 		urlVars += "?binarytodenary=true&";
@@ -126,7 +128,8 @@ function startQuiz() {
         } else {
                 urlVars += "?denarytofloatingpoint=false&";
         }
-	console.log(urlVars);
+	urlVars += "?noQuestions=" + noQuestionsVal;
+	window.location.href = "quiz.html" + urlVars;
 }
 
 document.getElementById('startquizbtn').addEventListener('click', () => startQuiz());
