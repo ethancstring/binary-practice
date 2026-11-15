@@ -21,7 +21,7 @@
 #options {
 	display: grid;
 	grid-template-columns: 200px 200px;
-	grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+	grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto;
 	padding: 0;
 	margin: 0;
 	width: 400px;

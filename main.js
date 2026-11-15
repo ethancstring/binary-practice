@@ -30,6 +30,17 @@ function questions() {
         let denarytofixedpoint = params.get("denarytofixedpoint");
         let floatingpointtodenary = params.get("floatingpointtodenary");
         let denarytofloatingpoint = params.get("denarytofloatingpoint");
+	let denarytosignmag = params.get("denarytosignmag");
+	let signmagtodenary = params.get("signmagtodenary");
+	let noQuestions;
+	if (params.get("noQuestions") != ""){
+		noQuestions = parseInt(params.get("noQuestions"), 10);
+	} else {
+		noQuestions = 0;
+	}
+	console.log(denarytosignmag);
+	console.log(signmagtodenary);
+	console.log(noQuestions);
 }
 
 document.getElementById('btn1').addEventListener('click', () => check(1));

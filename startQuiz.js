@@ -16,6 +16,8 @@ function startQuiz() {
         const denarytofixedpoint = document.getElementById("denarytofixedpoint");
         const fixedpointtodenary = document.getElementById("fixedpointtodenary");
         const denarytofloatingpoint = document.getElementById("denarytofloatingpoint");
+	const denarytosignmag = document.getElementById("denarytosignmag");
+	const signmagtodenary = document.getElementById("signmagtodenary");
         const floatingpointtodenary = document.getElementById("floatingpointtodenary");
 	const noQuestions = document.getElementById("noQuestions");
 	let binarytodenaryVal = binarytodenary.checked;
@@ -36,100 +38,112 @@ function startQuiz() {
 	let fixedpointtodenaryVal = fixedpointtodenary.checked;
 	let denarytofloatingpointVal = denarytofloatingpoint.checked;
 	let floatingpointtodenaryVal = floatingpointtodenary.checked;
+	let denarytosignmagVal = denarytosignmag.checked;
+	let signmagtodenaryVal = signmagtodenary.checked;
 	let noQuestionsVal = noQuestions.value;
-	let urlVars = "";
+	let urlVars = "?";
 	if (binarytodenaryVal){
-		urlVars += "?binarytodenary=true&";
+		urlVars += "binarytodenary=true&";
 	} else {
-		urlVars += "?binarytodenary=false&";
+		urlVars += "binarytodenary=false&";
 	}
         if (denarytobinaryVal){
-                urlVars += "?denarytobinary=true&";
+                urlVars += "denarytobinary=true&";
         } else {
-                urlVars += "?denarytobinary=false&";
+                urlVars += "denarytobinary=false&";
         }
         if (hextodenaryVal){
-                urlVars += "?hextodenary=true&";
+                urlVars += "hextodenary=true&";
         } else {
-                urlVars += "?hextodenary=false&";
+                urlVars += "hextodenary=false&";
         }
         if (denarytohexVal){
-                urlVars += "?denarytohex=true&";
+                urlVars += "denarytohex=true&";
         } else {
-                urlVars += "?denarytohex=false&";
+                urlVars += "denarytohex=false&";
         }
         if (octaltodenaryVal){
-                urlVars += "?octaltodenary=true&";
+                urlVars += "octaltodenary=true&";
         } else {
-                urlVars += "?octaltodenary=false&";
+                urlVars += "octaltodenary=false&";
         }
         if (denarytooctalVal){
-                urlVars += "?denarytooctal=true&";
+                urlVars += "denarytooctal=true&";
         } else {
-                urlVars += "?denarytooctal=false&";
+                urlVars += "denarytooctal=false&";
         }
         if (binarytohexVal){
-                urlVars += "?binarytohex=true&";
+                urlVars += "binarytohex=true&";
         } else {
-                urlVars += "?binarytohex=false&";
+                urlVars += "binarytohex=false&";
         }
         if (hextobinaryVal){
-                urlVars += "?hextobinary=true&";
+                urlVars += "hextobinary=true&";
         } else {
-                urlVars += "?hextobinary=false&";
+                urlVars += "hextobinary=false&";
         }
         if (octaltohexVal){
-                urlVars += "?octaltohex=true&";
+                urlVars += "octaltohex=true&";
         } else {
-                urlVars += "?octaltohex=false&";
+                urlVars += "octaltohex=false&";
         }
         if (hextooctalVal){
-                urlVars += "?hextooctal=true&";
+                urlVars += "hextooctal=true&";
         } else {
-                urlVars += "?hextooctal=false&";
+                urlVars += "hextooctal=false&";
         }
         if (binarytooctalVal){
-                urlVars += "?binarytooctal=true&";
+                urlVars += "binarytooctal=true&";
         } else {
-                urlVars += "?binarytooctal=false&";
+                urlVars += "binarytooctal=false&";
         }
         if (octaltobinaryVal){
-                urlVars += "?octaltobinary=true&";
+                urlVars += "octaltobinary=true&";
         } else {
-                urlVars += "?octaltobinary=false&";
+                urlVars += "octaltobinary=false&";
         }
         if (twoscomptodenaryVal){
-                urlVars += "?twoscomptodenary=true&";
+                urlVars += "twoscomptodenary=true&";
         } else {
-                urlVars += "?twoscomptodenary=false&";
+                urlVars += "twoscomptodenary=false&";
         }
         if (denarytotwoscompVal){
-                urlVars += "?denarytotwoscomp=true&";
+                urlVars += "denarytotwoscomp=true&";
         } else {
-                urlVars += "?denarytotwoscomp=false&";
+                urlVars += "denarytotwoscomp=false&";
         }
         if (fixedpointtodenaryVal){
-                urlVars += "?fixedpointtodenary=true&";
+                urlVars += "fixedpointtodenary=true&";
         } else {
-                urlVars += "?fixedpointtodenary=false&";
+                urlVars += "fixedpointtodenary=false&";
         }
         if (denarytofixedpointVal){
-                urlVars += "?denarytofixedpoint=true&";
+                urlVars += "denarytofixedpoint=true&";
         } else {
-                urlVars += "?denarytofixedpoint=false&";
+                urlVars += "denarytofixedpoint=false&";
         }
         if (floatingpointtodenaryVal){
                 urlVars += "floatingpointtodenary=true&";
         } else {
-                urlVars += "?floatingpointtodenary=false&";
+                urlVars += "floatingpointtodenary=false&";
         }
         if (denarytofloatingpointVal){
-                urlVars += "?denarytofloatingpoint=true&";
+                urlVars += "denarytofloatingpoint=true&";
         } else {
-                urlVars += "?denarytofloatingpoint=false&";
+                urlVars += "denarytofloatingpoint=false&";
         }
-	urlVars += "?noQuestions=" + noQuestionsVal;
-	if (binarytodenaryVal || denarytobinaryVal || denarytohexVal || hextodenaryVal || octaltodenaryVal || denarytooctalVal || hextobinaryVal || binarytohexVal || octaltohexVal || hextooctalVal || binarytooctalVal || octaltobinaryVal || twoscomptodenaryVal || denarytotwoscompVal || floatingpointtodenaryVal || denarytofloatingpointVal || fixedpointtodenaryVal || denarytofixedpointVal) {
+        if (denarytosignmagVal){
+                urlVars += "denarytosignmag=true&";
+        } else {
+                urlVars += "denarytosignmag=false&";
+        } 
+        if (signmagtodenaryVal){
+                urlVars += "signmagtodenary=true&";
+        } else {
+                urlVars += "signmagtodenary=false&";
+        } 
+	urlVars += "noQuestions=" + noQuestionsVal;
+	if (binarytodenaryVal || denarytobinaryVal || denarytohexVal || hextodenaryVal || octaltodenaryVal || denarytooctalVal || hextobinaryVal || binarytohexVal || octaltohexVal || hextooctalVal || binarytooctalVal || octaltobinaryVal || twoscomptodenaryVal || denarytotwoscompVal || floatingpointtodenaryVal || denarytofloatingpointVal || fixedpointtodenaryVal || denarytofixedpointVal || signmagtodenaryVal || denarytosignmagVal) {
 		window.location.href = "quiz.html" + urlVars;
 	}
 }
