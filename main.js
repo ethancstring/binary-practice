@@ -435,14 +435,6 @@ function setup() {
 		questionObjects[i] = new Question(start, end, startNum, answer, extra);
 		i += 1;
 	}
-	for (let i = 0; i < 40; i++){
-		console.log(questionObjects[i].getStartBase());
-		console.log(questionObjects[i].getEndBase());
-		console.log(questionObjects[i].getStartNumber());
-		console.log(questionObjects[i].getAnswer());
-		console.log(questionObjects[i].getExtra(0));
-		console.log(questionObjects[i].getExtra(1));
-	}
 	return questionObjects;
 }
 
