@@ -27,6 +27,7 @@ class Question {
 
 	getExtra(index) {
 		return this.extra[index];
+	}
 }
 
 function separate(questionType) {
