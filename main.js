@@ -24,6 +24,9 @@ class Question {
 	getEndNumber() {
 		return this.endNumber;
 	}
+
+	getExtra(index) {
+		return this.extra[index];
 }
 
 function separate(questionType) {
@@ -383,6 +386,79 @@ function setup() {
 		questionObjects[i] = new Question(start, end, startNum, answer);
 	}
 	return questionObjects;
+}
+
+function genBinary(length) {
+	let binary = "";
+	for (let i = 0; i < length; i++) {
+		if (Math.random() > 0.5) {
+			binary += "" + "1";
+		} else {
+			binary == "" + "0";
+		}
+	}
+	return binary;
+}
+
+function genHex(length) {
+	let hex = "";
+	for (int i = 0; i < length; i++) {
+		hex += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 16));
+	}
+	return hex;
+}
+
+function genOctal(length) {
+        let octal = "";
+        for (int i = 0; i < length; i++) {
+                octal += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 8));
+        }
+        return octal;                             
+}   
+
+function fractionalDenary(length1, length2, fixedComp) {
+	if (fixedComp) {
+		let denary = 0;
+		const weights = [];
+		weights[0] = 2 ** (length1 - 1);
+		for (let i = 1; i < (length1 + length2); i++) {
+			weights[i] = weights[i - 1] / 2;
+		}
+		weights[0] *- -1;
+		for (const weight of weights) {
+			if (Math.random() > 0.5) {
+				denary += weight;
+			}
+		}
+		return denary;
+	} else {
+		let denary = 0;
+		const weights = [];
+                weights[0] = 1;
+                for (let i = 1; i < (length1); i++) {
+                        weights[i] = weights[i - 1] / 2;
+                }
+		weights[0] = -1;
+		for (const weight of weights) {
+                        if (Math.random() > 0.5) {
+                                denary += weight;
+                        }
+                }
+		const weightsExp = [];
+		weightsExp[0] = 2 ** (length2 - 1);
+		for (let i = 1; i < length2; i++) {
+			weightsExp[i] = weightsExp[i - 1] / 2;
+		}
+		weightsExp[0] *= -1;
+		let exponent = 0;
+		for (const weight of weightsExp) {
+			if (Math.random() > 0.5) {
+                                exponent += weight;
+                        }
+                }
+		denary *= 2 ** exponent;
+		return denary;
+	}
 }
 
 document.getElementById('btn1').addEventListener('click', () => check(1));
