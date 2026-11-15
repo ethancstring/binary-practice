@@ -35,6 +35,98 @@ function startQuiz() {
 	let fixedpointtodenaryVal = fixedpointtodenary.checked;
 	let denarytofloatingpointVal = denarytofloatingpoint.checked;
 	let floatingpointtodenaryVal = floatingpointtodenary.checked;
+	let urlVars = "";
+	if (binarytodenaryVal){
+		urlVars += "?binarytodenary=true&";
+	} else {
+		urlVars += "?binarytodenary=false&";
 	}
+        if (denarytobinaryVal){
+                urlVars += "?denarytobinary=true&";
+        } else {
+                urlVars += "?denarytobinary=false&";
+        }
+        if (hextodenaryVal){
+                urlVars += "?hextodenary=true&";
+        } else {
+                urlVars += "?hextodenary=false&";
+        }
+        if (denarytohexVal){
+                urlVars += "?denarytohex=true&";
+        } else {
+                urlVars += "?denarytohex=false&";
+        }
+        if (octaltodenaryVal){
+                urlVars += "?octaltodenary=true&";
+        } else {
+                urlVars += "?octaltodenary=false&";
+        }
+        if (denarytooctalVal){
+                urlVars += "?denarytooctal=true&";
+        } else {
+                urlVars += "?denarytooctal=false&";
+        }
+        if (binarytohexVal){
+                urlVars += "?binarytohex=true&";
+        } else {
+                urlVars += "?binarytohex=false&";
+        }
+        if (hextobinaryVal){
+                urlVars += "?hextobinary=true&";
+        } else {
+                urlVars += "?hextobinary=false&";
+        }
+        if (octaltohexVal){
+                urlVars += "?octaltohex=true&";
+        } else {
+                urlVars += "?octaltohex=false&";
+        }
+        if (hextooctalVal){
+                urlVars += "?hextooctal=true&";
+        } else {
+                urlVars += "?hextooctal=false&";
+        }
+        if (binarytooctalVal){
+                urlVars += "?binarytooctal=true&";
+        } else {
+                urlVars += "?binarytooctal=false&";
+        }
+        if (octaltobinaryVal){
+                urlVars += "?octaltobinary=true&";
+        } else {
+                urlVars += "?octaltobinary=false&";
+        }
+        if (twoscomptodenaryVal){
+                urlVars += "?twoscomptodenary=true&";
+        } else {
+                urlVars += "?twoscomptodenary=false&";
+        }
+        if (denarytotwoscompVal){
+                urlVars += "?denarytotwoscomp=true&";
+        } else {
+                urlVars += "?denarytotwoscomp=false&";
+        }
+        if (fixedpointtodenaryVal){
+                urlVars += "?fixedpointtodenary=true&";
+        } else {
+                urlVars += "?fixedpointtodenary=false&";
+        }
+        if (denarytofixedpointVal){
+                urlVars += "?denarytofixedpoint=true&";
+        } else {
+                urlVars += "?denarytofixedpoint=false&";
+        }
+        if (floatingpointtodenaryVal){
+                urlVars += "floatingpointtodenary=true&";
+        } else {
+                urlVars += "?floatingpointtodenary=false&";
+        }
+        if (denarytofloatingpointVal){
+                urlVars += "?denarytofloatingpoint=true&";
+        } else {
+                urlVars += "?denarytofloatingpoint=false&";
+        }
+	console.log(urlVars);
+}
 
 document.getElementById('startquizbtn').addEventListener('click', () => startQuiz());
