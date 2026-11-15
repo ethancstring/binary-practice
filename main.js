@@ -38,10 +38,101 @@ function questions() {
 	} else {
 		noQuestions = 0;
 	}
-	console.log(denarytosignmag);
-	console.log(signmagtodenary);
-	console.log(noQuestions);
+	const questions = [];
+	let i = 0;
+	if (binarytodenary === "true") {
+		questions[i] = "binarytodenary";
+		i++;
+	}
+	if (denarytobinary === "true") {
+		questions[i] = "denarytobinary";
+		i++;
+	}
+        if (hextodenary === "true") {              
+                questions[i] = "hextodenary";
+                i++;
+        }
+        if (denarytohex === "true") {              
+                questions[i] = "denarytohex";
+                i++;
+        }
+        if (octaltodenary === "true") {              
+                questions[i] = "octaltodenary";
+                i++;
+        }
+        if (binarytohex === "true") {              
+                questions[i] = "binarytohex";
+                i++;
+        }
+        if (hextobinary === "true") {              
+                questions[i] = "hextobinary";
+                i++;
+        }
+        if (octaltohex === "true") {              
+                questions[i] = "octaltohex";
+                i++;
+        }
+        if (hextooctal === "true") {              
+                questions[i] = "hextooctal";
+                i++;
+        }
+        if (octaltobinary === "true") {              
+                questions[i] = "octaltobinary";
+                i++;
+        }
+        if (binarytooctal === "true") {              
+                questions[i] = "binarytooctal";
+                i++;
+        }
+        if (denarytosignmag === "true") {              
+                questions[i] = "denarytosignmag";
+                i++;
+        }
+        if (signmagtodenary === "true") {              
+                questions[i] = "signmagtodenary";
+                i++;
+        }
+        if (denarytotwoscomp === "true") {              
+                questions[i] = "denarytotwoscomp";
+                i++;
+        }
+        if (twoscomptodenary === "true") {              
+                questions[i] = "twoscomptodenary";
+                i++;
+        }
+        if (denarytofixedpoint === "true") {              
+                questions[i] = "denarytofixedpoint";
+                i++;
+        }
+        if (denarytofloatingpoint === "true") {              
+                questions[i] = "denarytofloatingpoint";
+                i++;
+        }
+        if (fixedpointtodenary === "true") {              
+                questions[i] = "fixedpointtodenary";
+                i++;
+        }
+        if (floatingpointtodenary === "true") {              
+                questions[i] = "floatingpointtodenary";
+                i++;
+        }
+        if (denarytooctal === "true") {              
+                questions[i] = "denarytooctal";
+                i++;
+        }
+	if (i < noQuestions) {
+		for (let j = i; j <= (noQuestions - 1); j++) {
+			questions[j] = questions[Math.floor(Math.random() * i)];
+		}
+	}
+	return questions;
+}
+
+function setup() {
+	const questions = questions();
 }
 
 document.getElementById('btn1').addEventListener('click', () => check(1));
-questions();
+
+
+setup();
