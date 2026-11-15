@@ -10,4 +10,27 @@ function check(number) {
 	}
 }
 
+function questions() {
+	let params = new URLSearchParams(document.location.search);
+	let binarytodenary = params.get("binarytodenary");
+	let denarytobinary = params.get("denarytobinary");
+        let hextodenary = params.get("hextodenary");
+        let denarytohex = params.get("denarytohex");
+        let octaltodenary = params.get("octaltodenary");
+        let denarytooctal = params.get("denarytooctal");
+        let binarytohex = params.get("binarytohex");
+        let hextobinary = params.get("hextobinary");
+        let binarytooctal = params.get("binarytooctal");
+        let octaltobinary = params.get("octaltobinary");
+        let hextooctal = params.get("hextooctal");
+        let octaltohex = params.get("octaltohex");
+        let twoscomptodenary = params.get("twoscomptodenary");
+        let denarytotwoscomp = params.get("denarytotwoscomp");
+        let fixedpointtodenary = params.get("fixedpointtodenary");
+        let denarytofixedpoint = params.get("denarytofixedpoint");
+        let floatingpointtodenary = params.get("floatingpointtodenary");
+        let denarytofloatingpoint = params.get("denarytofloatingpoint");
+}
+
 document.getElementById('btn1').addEventListener('click', () => check(1));
+questions();
