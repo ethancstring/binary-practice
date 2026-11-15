@@ -281,8 +281,18 @@ function setup() {
 						startNum = Math.floor((Math.random() * 256)) - 128;
 					}
 				} else if (end == "fixedpoint") {
-					extra[0] = Math.floor(Math.random() * 5) + 8;
-					extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
+					if (Math.random() > 0.5) {
+                                	        extra[0] = 6;
+                                	        extra[1] = 4;
+                                	} else {
+                                	        if (Math.random() > 0.67) {
+                                	                extra[0] = 9;
+                                	                extra[1] = 3;
+                                	        } else {
+                                	                extra[0] = 10;
+                                	                extra[1] = 4;
+                                	        }
+                                	}
 					startNum = fractionalDenary(extra[0], extra[1], true);
 				} else {
 					if (Math.random() > 0.67) {
@@ -301,8 +311,18 @@ function setup() {
 				}
 				break;
 			case "fixedpoint":
-				extra[0] = Math.floor(Math.random() * 5) + 8;
-                                extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
+				if (Math.random() > 0.5) {
+                                        extra[0] = 6;
+                                        extra[1] = 4;
+                                } else {
+                                        if (Math.random() > 0.67) {
+                                                extra[0] = 9;
+                                                extra[1] = 3;
+                                        } else {
+                                                extra[0] = 10;
+                                                extra[1] = 4;
+                                        }
+                                }
 				startNum = genBinary(extra[0] + extra[1]);
 				break;
 			case "floatingpoint":
@@ -415,18 +435,14 @@ function setup() {
 		questionObjects[i] = new Question(start, end, startNum, answer, extra);
 		i += 1;
 	}
-	console.log(questionObjects[0].getStartBase());
-	console.log(questionObjects[0].getEndBase());
-	console.log(questionObjects[0].getStartNumber());
-	console.log(questionObjects[0].getAnswer());
-	console.log(questionObjects[0].getExtra(0));
-	console.log(questionObjects[0].getExtra(1));
-	console.log(questionObjects[1].getStartBase());
-        console.log(questionObjects[1].getEndBase());
-        console.log(questionObjects[1].getStartNumber());
-        console.log(questionObjects[1].getAnswer());
-        console.log(questionObjects[1].getExtra(0));
-        console.log(questionObjects[1].getExtra(1));
+	for (let i = 0; i < 40; i++){
+		console.log(questionObjects[i].getStartBase());
+		console.log(questionObjects[i].getEndBase());
+		console.log(questionObjects[i].getStartNumber());
+		console.log(questionObjects[i].getAnswer());
+		console.log(questionObjects[i].getExtra(0));
+		console.log(questionObjects[i].getExtra(1));
+	}
 	return questionObjects;
 }
 

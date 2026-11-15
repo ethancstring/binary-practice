@@ -1,4 +1,24 @@
 export class BaseConversions {
+    static denaryToSignMag(denary) {
+	let signMag;
+	if (denary > 0) {
+	    signMag = this.denaryToBinary(denary, false, 8);
+	} else {
+	    signMag = "1" + this.denaryToBinary(denary * -1, false, 7);
+	}
+	return signMag;
+    }
+
+    static signMagToDenary(signMag) {
+	let denary;
+	if (signMag.substring(0, 1) == "0") {
+	    denary = this.binaryToDenary(signMag, false);
+	} else {
+	    denary = -1 * this.binaryToDenary(signMag.substring(1), false);
+	}
+	return denary;
+    }
+
     static binaryToDenary(binary, twosComplement) {
         let denary = 0;
         const weights = [];
