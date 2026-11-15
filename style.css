@@ -9,7 +9,7 @@
 .optionHolder {
 	display: grid;
 	grid-template-columns: 160px 40px;
-	padding: 2px;
+	padding: 0;
 	margin: 0;
 	width: 200px;
 	height: 50px;
@@ -21,11 +21,12 @@
 #options {
 	display: grid;
 	grid-template-columns: 200px 200px;
-	grid-template-rows: auto auto auto auto auto auto auto auto auto;
+	grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
 	padding: 0;
 	margin: 0;
 	width: 400px;
 	height: 450px;
+	align-items: center;
 }
 	
 
@@ -37,4 +38,18 @@
 
 p {
 	margin: 0;
+}
+
+#startquizbtn {
+	padding: 0;
+	width: 200px;
+	height: 50px;;
+}
+
+#startquizbtndiv {
+	padding: 0;
+	margin: 0;
+	width: 200px;
+	height: 50px;
+	align-items: center;
 }

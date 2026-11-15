@@ -1,0 +1,40 @@
+function startQuiz() {
+	const binarytodenary = document.getElementById("binarytodenary");
+        const denarytobinary = document.getElementById("denarytobinary");
+        const hextodenary = document.getElementById("hextodenary");
+        const denarytohex = document.getElementById("denarytohex");
+        const octaltodenary = document.getElementById("octaltodenary");
+        const denarytooctal = document.getElementById("denarytooctal");
+        const binarytohex = document.getElementById("binarytohex");
+        const hextobinary = document.getElementById("hextobinary");
+        const binarytooctal = document.getElementById("binarytooctal");
+        const octaltobinary = document.getElementById("octaltobinary");
+        const hextooctal = document.getElementById("hextooctal");
+        const octaltohex = document.getElementById("octaltohex");
+        const denarytotwoscomp = document.getElementById("denarytotwoscomp");
+        const twoscomptodenary = document.getElementById("twoscomptodenary");
+        const denarytofixedpoint = document.getElementById("denarytofixedpoint");
+        const fixedpointtodenary = document.getElementById("fixedpointtodenary");
+        const denarytofloatingpoint = document.getElementById("denarytofloatingpoint");
+        const floatingpointtodenary = document.getElementById("floatingpointtodenary");
+	let binarytodenaryVal = binarytodenary.checked;
+	let denarytobinaryVal = denarytobinary.checked;
+	let hextodenaryVal = hextodenary.checked;
+	let denarytohexVal = denarytohex.checked;
+	let octaltodenaryVal = octaltodenary.checked;
+	let denarytooctalVal = denarytooctal.checked;
+	let binarytohexVal = binarytohex.checked;
+	let hextobinaryVal = hextobinary.checked;
+	let binarytooctalVal = binarytooctal.checked;
+	let octaltobinaryVal = octaltobinary.checked;
+	let hextooctalVal = hextooctal.checked;
+	let octaltohexVal = octaltohex.checked;
+	let denarytotwoscompVal = denarytotwoscomp.checked;
+	let twoscomptodenaryVal = twoscomptodenary.checked;
+	let denarytofixedpointVal = denarytofixedpoint.checked;
+	let fixedpointtodenaryVal = fixedpointtodenary.checked;
+	let denarytofloatingpointVal = denarytofloatingpoint.checked;
+	let floatingpointtodenaryVal = floatingpointtodenary.checked;
+	}
+
+document.getElementById('startquizbtn').addEventListener('click', () => startQuiz());
