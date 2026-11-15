@@ -129,7 +129,9 @@ function startQuiz() {
                 urlVars += "?denarytofloatingpoint=false&";
         }
 	urlVars += "?noQuestions=" + noQuestionsVal;
-	window.location.href = "quiz.html" + urlVars;
+	if (binarytodenaryVal || denarytobinaryVal || denarytohexVal || hextodenaryVal || octaltodenaryVal || denarytooctalVal || hextobinaryVal || binarytohexVal || octaltohexVal || hextooctalVal || binarytooctalVal || octaltobinaryVal || twoscomptodenaryVal || denarytotwoscompVal || floatingpointtodenaryVal || denarytofloatingpointVal || fixedpointtodenaryVal || denarytofixedpointVal) {
+		window.location.href = "quiz.html" + urlVars;
+	}
 }
 
 document.getElementById('startquizbtn').addEventListener('click', () => startQuiz());
