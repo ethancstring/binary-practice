@@ -311,7 +311,7 @@ function setup() {
 					case "hex":
 						answer = BaseConversions.hexToBinary(startNum);
 						break;
-					case "octal"
+					case "octal":
 						answer = BaseConversions.octalToBinary(startNum);
 						break;
 				}
@@ -324,7 +324,7 @@ function setup() {
                                         case "binary":
                                                 answer = BaseConversions.binaryToHex(startNum);
                                                 break;
-                                        case "octal"
+                                        case "octal":
                                                 answer = BaseConversions.octalToHex(startNum);
                                                 break;
                                 }            
@@ -337,7 +337,7 @@ function setup() {
                                         case "hex":
                                                 answer = BaseConversions.hexToOctal(startNum);
                                                 break;
-                                        case "binary"
+                                        case "binary":
                                                 answer = BaseConversions.binaryToOctal(startNum);
                                                 break;
                                 }            
