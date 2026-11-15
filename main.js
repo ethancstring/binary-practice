@@ -1,5 +1,119 @@
 import { BaseConversions, FixedPoint, FloatingPoint } from './conversions.js';
 
+class Question {
+	constructor(startBase, endBase, startNumber, answer, extra) {
+		this.startBase = startBase;
+		this.endBase = endBase;
+		this.startNumber = startNumber;
+		this.endNumber = endNumber;
+		this.extra = extra;
+	}
+
+	getStartBase() {
+		return this.startBase;
+	}
+
+	getEndBase() {
+		return this.endBase;
+	}
+
+	getStartNumber() {
+		return this.startNumber;
+	}
+
+	getEndNumber() {
+		return this.endNumber;
+	}
+}
+
+function separate(questionType) {
+	let start;
+	let end;
+	switch (questionType) {
+		case "binarytodenary":
+			start = "binary";
+			end = "denary";
+			break;
+                case "denarytobinary":
+                        start = "denary";
+                        end = "binary";
+                        break;
+                case "hextodenary":
+                        start = "hex";
+                        end = "denary";
+                        break;
+                case "denarytohex":
+                        start = "denary";
+                        end = "hex";
+                        break;
+                case "octaltodenary":
+                        start = "octal";
+                        end = "denary";
+                        break;
+                case "denarytooctal":
+                        start = "denary";
+                        end = "octal";
+                        break;
+                case "binarytohex":
+                        start = "binary";
+                        end = "hex";
+                        break;
+                case "hextobinary":
+                        start = "hex";
+                        end = "binary";
+                        break;
+                case "binarytooctal":
+                        start = "binary";
+                        end = "octal";
+                        break;
+                case "octaltobinary":
+                        start = "octal";
+                        end = "binary";
+                        break;
+                case "hextooctal":
+                        start = "hex";
+                        end = "octal";
+                        break;
+                case "octaltohex":
+                        start = "octal";
+                        end = "hex";
+                        break;
+                case "signmagtodenary":
+                        start = "signmag";
+                        end = "denary";
+                        break;
+                case "denarytosignmag":
+                        start = "denary";
+                        end = "signmag";
+                        break;
+                case "twoscomptodenary":
+                        start = "twoscomp";
+                        end = "denary";
+                        break;
+                case "denarytotwoscomp":
+                        start = "denary";
+                        end = "twoscomp";
+                        break;
+                case "fixedpointtodenary":
+                        start = "fixedpoint";
+                        end = "denary";
+                        break;
+                case "denarytofixedpoint":
+                        start = "denary";
+                        end = "fixedpoint";
+                        break;
+                case "floatingpointtodenary":
+                        start = "floatingpoint";
+                        end = "denary";
+                        break;
+                case "denarytofloatingpoint":
+                        start = "binary";
+                        end = "floatingpoint";
+                        break;
+	}
+	return [start, end];
+}
+
 function check(number) {
 	const box = document.getElementById('answerEntry1');
 	let answer = box.value;
@@ -10,7 +124,7 @@ function check(number) {
 	}
 }
 
-function questions() {
+function questionsOrder() {
 	let params = new URLSearchParams(document.location.search);
 	let binarytodenary = params.get("binarytodenary");
 	let denarytobinary = params.get("denarytobinary");
@@ -129,7 +243,146 @@ function questions() {
 }
 
 function setup() {
-	const questions = questions();
+	const questions = questionsOrder();
+	const questionObjects = [];
+	let i = 0;
+	for (const question of questions) {
+		let questionParts = separate(question);
+		let start = questionParts[0];
+		let end = questionParts[1];
+		let startNum;
+		let answer;
+		let extra = [0, 0];
+		switch (start) {
+			case "binary":
+			case "twoscomp":
+			case "signmag":
+				startNum = genBinary(8);
+				break;
+			case "hex":
+				startNum = genHex(Math.floor(Math.random() * 3) + 2);
+				break;
+			case "octal":
+				startNum = genOctal(Math.floor(Math.random() * 3) + 2);
+				break;
+			case "denary":
+				if (end == "binary" || end == "octal" || end == "hex") {
+					startNum = 0;
+					while (startNum == 0) {
+						startNum = Math.floor(Math.random() * 256);
+					}
+				} else if (end == "twoscomp" || end == "signmag") {
+					startNum = 0;
+					while (startNum == 0) {
+						startNum = Math.floor((Math.random() * 256)) - 128;
+					}
+				} else if (end == "fixedpoint") {
+					extra[0] = Math.floor(Math.random() * 5) + 8;
+					extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
+					startNum = fractionalDenary(extra[0], extra[1], true);
+				} else {
+					extra[0] = Math.floor(Math.random() * 5) + 8;
+                                        extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
+					startNum = fractionalDenary(extra[0], extra[1], false);
+				}
+				break;
+			case "fixedpoint":
+				extra[0] = Math.floor(Math.random() * 5) + 8;
+                                extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
+				startNum = genBinary(extra[0] + extra[1]);
+				break;
+			case "floatingpoint":
+				extra[0] = Math.floor(Math.random() * 5) + 8;
+                                extra[1] = Math.floor(Math.random() * Math.floor((extra[0] - 1) / 2)) + 2;
+				if (Math.random() > 0.5) {
+					startNumber = "01";
+				} else {
+					startNumber = "10";
+				}
+				startNumber += "" + genBinary(extra[0] + extra[1] - 2);
+				break;
+		}
+		switch (end) {
+			case "binary":
+				switch (start) {
+					case "denary":
+						answer = BaseConversions.denaryToBinary(startNum, false);
+						break;
+					case "hex":
+						answer = BaseConversions.hexToBinary(startNum);
+						break;
+					case "octal"
+						answer = BaseConversions.octalToBinary(startNum);
+						break;
+				}
+				break;
+                        case "hex":
+                                switch (start) {
+                                        case "denary":
+                                                answer = BaseConversions.denaryToHex(startNum);
+                                                break;
+                                        case "binary":
+                                                answer = BaseConversions.binaryToHex(startNum);
+                                                break;
+                                        case "octal"
+                                                answer = BaseConversions.octalToHex(startNum);
+                                                break;
+                                }            
+                                break;
+                        case "octal":
+                                switch (start) {
+                                        case "denary":
+                                                answer = BaseConversions.denaryToOctal(startNum);
+                                                break;
+                                        case "hex":
+                                                answer = BaseConversions.hexToOctal(startNum);
+                                                break;
+                                        case "binary"
+                                                answer = BaseConversions.binaryToOctal(startNum);
+                                                break;
+                                }            
+                                break;
+			case "signmag":
+				answer = BaseConversions.denaryToSignMag(startNum);
+				break;
+			case "twoscomp":
+				answer = BaseConversions.denaryToBinary(startNum, true);
+				break;
+			case "fixedpoint":
+				answer = FixedPoint.toBinary(startNum, extra[1], extra[0] - extra[1]);
+				break;
+			case "floatingpoint":
+				answer = FloatingPoint.toBinary(startNum, extra[1], extra[0] - extra[1]);
+				break;
+			case "denary":
+				switch (start) {
+					case "binary":
+						answer = BaseConversions.binaryToDenary(startNum, false);
+						break;
+					case "hex":
+						answer = BaseConversions.hexToDenary(startNum);
+						break;
+					case "octal":
+						answer = BaseConversions.octalToDenary(startNum);
+						break;
+					case "signmag":
+						answer = BaseConversions.signMagToDenary(startNum);
+						break;
+					case "twoscomp":
+						answer = BaseConversions.binaryToDenary(startNum, true);
+						break;
+					case "fixedpoint":
+						answer = FixedPoint.toDenary(startNum, extra[1]);
+						break;
+					case "floatingpoint":
+						answer = FloatingPoint.toDenary(startNum, extra[1], extra[0] - extra[1]);
+						break;
+				}
+				break;
+		}
+		questionObjects[i] = new Question(start, end, startNum, answer);
+	}
+	return questionObjects;
 }
 
 document.getElementById('btn1').addEventListener('click', () => check(1));
