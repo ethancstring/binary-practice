@@ -529,11 +529,84 @@ function fractionalDenary(length1, length2, fixedComp) {
 }
 
 function draw(questionObjects) {
-	console.log(questionObjects);
+	let i = 1;
+	const div = document.getElementById("questionsDiv");
+	for (const question of questionObjects) {
+		const questionNo = document.createElement("h4");
+		questionNo.textContent = "Question " + i;
+		const question = document.createElement("p");
+		let questionContents = "Convert ";
+		questionContents += questionObjects[i - 1].getStartNumber() + " from ";
+		switch (questionObjects[i - 1].getStartBase()) {
+			case "binary":
+				questionContents += "8 bit binary";
+				break;
+			case "denary":
+			case "octal":
+				questionContents += questionObjects[i - 1].getStartBase();
+				break;
+			case "hex":
+				questionContents += "hexadecimal";
+				break;
+			case "twoscomp":
+				questionContents += "8 bit two's complement binary";
+				break;
+			case "fixedpoint":
+				questionContents += "fixed point binary with " + questionObjects[i - 1].getExtra(0) + " bits before the point and " + questionObjects[i - 1].getExtra(1) + " bits after";
+				break;
+			case "floatingpoint":
+				questionContents += "floating point binary with a " + questionObjects[i - 1].getExtra(0) + " bit mantissa and a " + questionObjects[i - 1].getExtra(1) + " bit exponent";
+				break;
+			case "signmag":
+				questionContents += "8 bit sign and megnitude binary";
+				break;
+		}
+		questionContents += " to ";
+		switch (questionObjects[i - 1].getEndBase()) {
+                        case "binary":          
+                                questionContents += "8 bit binary";
+                                break;
+                        case "denary":
+                        case "octal":
+                                questionContents += questionObjects[i - 1].getEndBase();
+                                break;
+                        case "hex":   
+                                questionContents += "hexadecimal";
+                                break;
+                        case "twoscomp":
+                                questionContents += "8 bit two's complement binary";
+                                break;
+                        case "fixedpoint":
+                                questionContents += "fixed point binary with " + questionObjects[i - 1].getExtra(0) + " bits before the point and " + questionObjects[i - 1].getExtra(1) + " bits after";
+                                break;
+                        case "floatingpoint":
+                                questionContents += "floating point binary with a " + questionObjects[i - 1].getExtra(0) + " bit mantissa and a " + questionObjects[i - 1].getExtra(1) + " bit exponent";
+                                break;
+                        case "signmag":
+                                questionContents += "8 bit sign and megnitude binary";
+                                break;
+		}
+		question.textContent = questionContents;
+		const textEntry = document.createElement("input");
+		textEntry.setAttribute("type", "text");
+		textEntry.setAttribute("class", "answerEntry");	
+		textEntry.setAttribute("id", "answerEntry" + i);
+		const button = document.createElement("button");
+		button.textContent = "Check";
+		button.setAttribute("id", "btn" + i);
+		button.setAttribute("class", "entryBtn");
+		div.append(questionNo);
+		div.append(question);
+		div.append(textEntry);
+		div.append(button);
+		i++;
+	}
 }
 
-document.getElementById('btn1').addEventListener('click', () => check(1));
+//document.getElementById('btn1').addEventListener('click', () => check(1));
 
 
 let questionObjectsArray = setup();
 draw(questionObjectsArray);
+
+
