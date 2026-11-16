@@ -119,9 +119,9 @@ function separate(questionType) {
 }
 
 function check(number) {
-	const box = document.getElementById('answerEntry1');
+	const box = document.getElementById('answerEntry' + number);
 	let answer = box.value;
-	if (answer == BaseConversions.hexToDenary("A3")) {
+	if (answer == questionObjectsArray[number - 1].getAnswer()) {
 		box.style.backgroundColor = '#63eb42';
 	} else {
 		box.style.backgroundColor = '#fc3a3a';
@@ -609,4 +609,6 @@ function draw(questionObjects) {
 let questionObjectsArray = setup();
 draw(questionObjectsArray);
 
-
+for (let i = 1; i <= questionObjectsArray.length; i++) {
+	document.getElementById('btn' + i).addEventListener('click', () => check(i));
+}
