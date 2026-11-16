@@ -367,6 +367,11 @@ function setup() {
 						}
 						break;
 				}
+				if (answer.length < 8) {
+					for (let i = 0; i < (8 - answer.length); i++) {
+						answer = "0" + answer;
+					}
+				}
 				break;
                         case "hex":
                                 switch (start) {
