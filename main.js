@@ -264,7 +264,7 @@ function setup() {
 				startNum = genBinary(8);
 				break;
 			case "hex":
-				startNum = genHex(Math.floor(Math.random() * 3) + 2);
+				startNum = genHex(2);
 				break;
 			case "octal":
 				startNum = genOctal(Math.floor(Math.random() * 3) + 2);
