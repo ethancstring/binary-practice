@@ -456,12 +456,9 @@ function genBinary(length) {
 }
 
 function genHex(length) {
-	let hex = "";
-	for (let i = 0; i < length; i++) {
+	let hex = BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 15) + 1);
+	for (let i = 1; i < length; i++) {
 		hex += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 16));
-	}
-	while (hex[0] == "0") {
-		hex[0] = BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 16));
 	}
 	return hex;
 }
