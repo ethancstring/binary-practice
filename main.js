@@ -275,7 +275,7 @@ function setup() {
 				if (end == "binary" || end == "octal" || end == "hex") {
 					startNum = 0;
 					while (startNum == 0) {
-						startNum = Math.floor(Math.random() * 256);
+						startNum = Math.floor(Math.random() * 255);
 					}
 				} else if (end == "twoscomp" || end == "signmag") {
 					startNum = 0;
@@ -295,7 +295,10 @@ function setup() {
                                 	                extra[1] = 4;
                                 	        }
                                 	}
-					startNum = fractionalDenary(extra[0], extra[1], true);
+					startNum = 0;
+					while (startNum == 0) {
+						startNum = fractionalDenary(extra[0], extra[1], true);
+					}
 				} else {
 					if (Math.random() > 0.67) {
                                 	        extra[0] = 6;
@@ -309,7 +312,10 @@ function setup() {
 							extra[1] = 4;
 						}
                                 	}
-					startNum = fractionalDenary(extra[0], extra[1], false);
+					startNum = 0;
+                                        while (startNum == 0) {
+						startNum = fractionalDenary(extra[0], extra[1], false);
+					}
 				}
 				break;
 			case "fixedpoint":
