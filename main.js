@@ -269,7 +269,7 @@ function setup() {
 				startNum = genHex(2);
 				break;
 			case "octal":
-				startNum = genOctal(Math.floor(Math.random() * 3) + 2);
+				startNum = genOctal(Math.floor(Math.random() * 2) + 2);
 				break;
 			case "denary":
 				if (end == "binary" || end == "octal" || end == "hex") {
@@ -466,10 +466,20 @@ function genHex(length) {
 }
 
 function genOctal(length) {
-        let octal = "";
+	let octal = "";
+	if (length == 3) {
+        	octal = BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 3) + 1);
+		length = 2;
+	}
         for (let i = 0; i < length; i++) {
                 octal += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 8));
         }
+	while (octal == "00") {
+		octal = ""
+		for (let i = 0; i < length; i++) {
+                	octal += "" + BaseConversions.denaryToHexDigit(Math.floor(Math.random() * 8));
+        	}
+	}
         return octal;                             
 }   
 
