@@ -123,6 +123,8 @@ function check(number) {
 	let answer = box.value.toUpperCase().replaceAll(".", "");
 	if (answer == questionObjectsArray[number - 1].getAnswer()) {
 		box.style.backgroundColor = '#63eb42';
+	} else if (questionObjectsArray[number - 1].getEndBase() == "hex" && questionObjectsArray[number - 1].getAnswer().length == 1 && answer == "0" + questionObjectsArray[number - 1].getAnswer()) {
+		box.style.backgroundColor = '#63eb42';
 	} else {
 		box.style.backgroundColor = '#fc3a3a';
 	}
