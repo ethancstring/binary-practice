@@ -120,7 +120,7 @@ function separate(questionType) {
 
 function check(number) {
 	const box = document.getElementById('answerEntry' + number);
-	let answer = box.value.toUpperCase;
+	let answer = box.value.toUpperCase().replaceAll(".", "");
 	if (answer == questionObjectsArray[number - 1].getAnswer()) {
 		box.style.backgroundColor = '#63eb42';
 	} else {
