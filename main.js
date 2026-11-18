@@ -1,6 +1,6 @@
 import { BaseConversions, FixedPoint, FloatingPoint } from './conversions.js';
 
-class Question {
+class Question {	//Class for question objects
 	constructor(startBase, endBase, startNumber, answer, extra) {
 		this.startBase = startBase;
 		this.endBase = endBase;
@@ -25,12 +25,12 @@ class Question {
 		return this.answer;
 	}
 
-	getExtra(index) {
+	getExtra(index) {		//Used for digits before & after point in fixed point and exponent & mantissa size in floating point
 		return this.extra[index];
 	}
 }
 
-function separate(questionType) {
+function separate(questionType) {		//Separates the question type into start and end bases
 	let start;
 	let end;
 	switch (questionType) {
@@ -118,20 +118,20 @@ function separate(questionType) {
 	return [start, end];
 }
 
-function check(number) {
-	const box = document.getElementById('answerEntry' + number);
+function check(number) {			//Checks answer
+	const box = document.getElementById('answerEntry' + number);		//Finds answer entry box
 	let answer = box.value.toUpperCase().replaceAll(".", "");
-	if (answer == questionObjectsArray[number - 1].getAnswer()) {
-		box.style.backgroundColor = '#63eb42';
-	} else if (questionObjectsArray[number - 1].getEndBase() == "hex" && questionObjectsArray[number - 1].getAnswer().length == 1 && answer == "0" + questionObjectsArray[number - 1].getAnswer()) {
-		box.style.backgroundColor = '#63eb42';
+	if (answer == questionObjectsArray[number - 1].getAnswer()) {		//If answer is the same as the one saved in question object
+		box.style.backgroundColor = '#63eb42';				//Make box green
+	} else if (questionObjectsArray[number - 1].getEndBase() == "hex" && questionObjectsArray[number - 1].getAnswer().length == 1 && answer == "0" + questionObjectsArray[number - 1].getAnswer()) { // If answer should be single hex digit, leading 0 is optional
+		box.style.backgroundColor = '#63eb42';				//Make box green
 	} else {
-		box.style.backgroundColor = '#fc3a3a';
+		box.style.backgroundColor = '#fc3a3a';				//Make box red
 	}
 }
 
-function questionsOrder() {
-	let params = new URLSearchParams(document.location.search);
+function questionsOrder() {		//Works out what questions have been selected and what order they should be
+	let params = new URLSearchParams(document.location.search);		//Gets choice from URL
 	let binarytodenary = params.get("binarytodenary");
 	let denarytobinary = params.get("denarytobinary");
         let hextodenary = params.get("hextodenary");
@@ -153,14 +153,14 @@ function questionsOrder() {
 	let denarytosignmag = params.get("denarytosignmag");
 	let signmagtodenary = params.get("signmagtodenary");
 	let noQuestions;
-	if (params.get("noQuestions") != ""){
+	if (params.get("noQuestions") != ""){			//If user has selected a number of questions
 		noQuestions = parseInt(params.get("noQuestions"), 10);
 	} else {
-		noQuestions = 0;
+		noQuestions = 0;		//ELSE - only as many as required
 	}
 	const questions = [];
 	let i = 0;
-	if (binarytodenary === "true") {
+	if (binarytodenary === "true") {			//Following if statements add selected questions to selected array ONCE
 		questions[i] = "binarytodenary";
 		i++;
 	}
@@ -242,15 +242,15 @@ function questionsOrder() {
         }
 	if (i < noQuestions) {
 		for (let j = i; j <= (noQuestions - 1); j++) {
-			questions[j] = questions[Math.floor(Math.random() * i)];
+			questions[j] = questions[Math.floor(Math.random() * i)];		//The rest of the array is in a random order of questions
 		}
 	}
 	return questions;
 }
 
 function setup() {
-	const questions = questionsOrder();
-	const questionObjects = [];
+	const questions = questionsOrder();	//Order of questions
+	const questionObjects = [];		//Empty array for question objects
 	let i = 0;
 	for (const question of questions) {
 		let questionParts = separate(question);
