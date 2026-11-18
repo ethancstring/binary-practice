@@ -275,7 +275,7 @@ function setup() {
 				if (end == "binary" || end == "octal" || end == "hex") {
 					startNum = 0;
 					while (startNum == 0) {
-						startNum = Math.floor(Math.random() * 255);
+						startNum = Math.floor(Math.random() * 255) + 1;
 					}
 				} else if (end == "twoscomp" || end == "signmag") {
 					startNum = 0;
