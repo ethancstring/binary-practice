@@ -353,7 +353,7 @@ function setup() {
 				}
 				startNum += "" + genBinary(extra[0] - 2);
 				let exponent = Math.floor(Math.random() * 6) - 2;
-				if ((BaseConversions.binaryToDenary(startNum, true) / (2 ** (extra[0] - 1)) * 8) % 1 != 0) {
+				if ((BaseConversions.binaryToDenary(startNum, true) * (2 ** (extra[0] - 1)) * 8) % 1 != 0) {
 					exponent = 3;
 				}
 				startNum += BaseConversions.denaryToBinary(exponent, true, extra[1]);
