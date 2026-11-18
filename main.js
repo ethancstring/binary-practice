@@ -623,9 +623,6 @@ function draw(questionObjects) {
 	}
 }
 
-//document.getElementById('btn1').addEventListener('click', () => check(1));
-
-
 let questionObjectsArray = setup();
 draw(questionObjectsArray);
 
